@@ -42,9 +42,11 @@ def read_file_cached(blobpath: str) -> bytes:
 
     cache_path = os.path.join(cache_dir, cache_key)
     if os.path.exists(cache_path):
+	print('using cached file!')
         with open(cache_path, "rb") as f:
             return f.read()
 
+    print('reading remote!!')
     contents = read_file(blobpath)
 
     os.makedirs(cache_dir, exist_ok=True)
